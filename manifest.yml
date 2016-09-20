@@ -11,4 +11,5 @@ applications:
       - config-server
       - p-circuit-breaker
     env:
+      SPRING_PROFILES_ACTIVE: cloud
       CF_TARGET: https://api.sys.dev.gsdcf.manulife.com
