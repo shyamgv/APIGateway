@@ -1,0 +1,8 @@
+.gradle
+target
+*.DS_Store
+.gradle
+build
+.idea
+.idea/
+greeter.iml

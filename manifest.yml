@@ -1,0 +1,14 @@
+---
+instances: 1
+memory: 1G
+applications:
+  - name: ZuulProxy
+    host: ZuulProxy
+    buildpack: java_buildpack_offline
+    path: target/ZuulProxy-0.0.1-SNAPSHOT.jar
+    services:
+      - service-registry
+      - config-server
+      - p-circuit-breaker
+    env:
+      CF_TARGET: https://api.sys.dev.gsdcf.manulife.com
