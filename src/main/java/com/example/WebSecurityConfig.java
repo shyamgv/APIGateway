@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.
                 authorizeRequests().
                 antMatchers("/hello**").hasRole("USER").
-                antMatchers("/login**").hasRole("USER").
+                antMatchers("/login**").permitAll().
                 antMatchers("/eureka**").hasRole("USER").
                 antMatchers("/admin/**").permitAll().
                 anyRequest()
