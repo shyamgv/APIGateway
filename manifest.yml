@@ -10,6 +10,7 @@ applications:
       - service-registry
       - config-server
       - p-circuit-breaker
+      - SSO
     env:
       SPRING_PROFILES_ACTIVE: cloud
       CF_TARGET: https://api.sys.dev.gsdcf.manulife.com
