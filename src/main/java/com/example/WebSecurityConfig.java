@@ -38,10 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.
                 authorizeRequests().
-                antMatchers("/hello**").hasRole("USER").
-                antMatchers("/login**").permitAll().
                 antMatchers("/eureka**").hasRole("USER").
-                antMatchers("/admin/**").permitAll().
+                antMatchers("/admin/**").hasRole("USER").
                 anyRequest()
                 .authenticated().and().logout().logoutSuccessUrl("/").permitAll().and().csrf()
                 .csrfTokenRepository(csrfTokenRepository());
