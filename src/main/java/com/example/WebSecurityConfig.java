@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.
                 authorizeRequests().
                 antMatchers("/eureka**").hasRole("USER").
-                antMatchers("/admin/**").hasRole("USER").
+                antMatchers("/admin**").hasRole("USER").
                 anyRequest()
                 .authenticated().and().logout().logoutSuccessUrl("/").permitAll().and().csrf()
                 .csrfTokenRepository(csrfTokenRepository());
