@@ -4,7 +4,7 @@ CF_PASSWORD: "Manulife123"
 CF_ORG: POC
 CF_SPACE: barrdal
 
-GITLAB_BRANCH: develop
+GITLAB_BRANCH: master
 GITLAB_SSH_URI: git@10.234.24.84:microservices/ZuulProxy.git
 GITLAB_PRIVATE_KEY: |
     -----BEGIN RSA PRIVATE KEY-----
