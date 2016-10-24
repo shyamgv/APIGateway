@@ -1,6 +1,6 @@
 ---
 groups:
-- name: zuulProxyTool-dev
+- name: zuulProxyToolDB-dev
   jobs:
   - test-develop
   - predeploy
