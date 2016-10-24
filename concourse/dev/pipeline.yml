@@ -25,7 +25,7 @@ resources:
 - name: src-develop
   type: git
   source:
-    branch: {{GITLAB_BRANCH}}
+   # branch: {{GITLAB_BRANCH}}
     uri: {{GITLAB_SSH_URI}}
     private_key: {{GITLAB_PRIVATE_KEY}}
     skip_ssl_verification: true
