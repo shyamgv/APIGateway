@@ -11,3 +11,4 @@ cf login --skip-ssl-validation -a $api -u $username -p $password -o $organizatio
 cf create-service p-service-registry standard $serviceRegistryName
 cf create-service p-config-server standard $configServerName
 cf create-service p-circuit-breaker-dashboard standard $circuitBreakerName
+cf create-service p-identity manulife SSO
