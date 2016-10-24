@@ -8,16 +8,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Greeting {
 
-        private String message;
+    private String message;
+    private String status;
 
-        @JsonCreator
-        public Greeting(@JsonProperty("message") String message) {
-            this.message = message;
-        }
+    @JsonCreator
+    public Greeting(@JsonProperty("message") String message,@JsonProperty("status") String status) {
+        this.message = message;
+        this.status = status;
+    }
 
-        public String getMessage() {
-            return this.message;
-        }
-
-
+    public String getMessage() {
+        String str = this.message + this.status;
+        return str;
+    }
 }
+

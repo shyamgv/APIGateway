@@ -1,12 +1,10 @@
 package com.example;
 
 import com.example.Filters.LoggingFilter;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
@@ -14,16 +12,14 @@ import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 
 @EnableZuulProxy
-@EnableCircuitBreaker
 @SpringBootApplication
-//@EnableHystrix
-//@EnableHystrixDashboard
 @RestController
 public class ZuulProxyApplication {
 
@@ -48,12 +44,11 @@ public class ZuulProxyApplication {
         SpringApplication.run(ZuulProxyApplication.class, args);
     }
 
-    @RequestMapping("/home")
+    @RequestMapping(value = "/home", method = RequestMethod.GET, produces = "application/json")
     public Greeting home(String salutation, String name) {
        return sayHome(salutation,name);
     }
 
-    @HystrixCommand(fallbackMethod = "fallbackGreeter")
     public Greeting sayHome(String salutation, String name) {
         OAuth2AccessToken access_token = oAuth2RestOperations.getAccessToken();
         System.out.println(access_token);
@@ -65,12 +60,7 @@ public class ZuulProxyApplication {
 
         Greeting greeting = restTemplate.getForObject(uri, Greeting.class);
 
-        return new Greeting(message.getMessage());
-    }
-
-    private Greeting fallbackGreeter(String salutation, String name) {
-        Greeting greeting = new Greeting("Fallback");
-        return greeting;
+        return new Greeting(greeting.getMessage(),this.message.getMessage());
     }
 
     @Bean
