@@ -1,0 +1,19 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: 10.234.24.211:443/zuulProxy
+    insecure_registries: ["10.234.24.211:443"]
+
+inputs:
+- name: zuulProxyTool
+
+run:
+  path: "mvn"
+  args: ["-f", "zuulProxyTool/pom.xml", "test"]
+
+params:
+  MAVEN_BASEDIR: zuulProxyTool
+  

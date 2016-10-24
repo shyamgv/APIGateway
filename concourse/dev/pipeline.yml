@@ -1,0 +1,85 @@
+---
+groups:
+- name: zuulProxyTool-dev
+  jobs:
+  - test-develop
+  - predeploy
+  - assemble
+
+resources:
+- name: 5h-during-work-day
+  type: time
+  source:
+    interval: 5h
+    start: 7:00 AM -0500
+    stop: 7:00 PM -0500
+    days:
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    - Sunday
+
+- name: src-develop
+  type: git
+  source:
+    branch: {{GITLAB_BRANCH}}
+    uri: {{GITLAB_SSH_URI}}
+    private_key: {{GITLAB_PRIVATE_KEY}}
+    skip_ssl_verification: true
+
+- name: cf-deploy
+  type: cf
+  source:
+    api: {{CF_API}}
+    username: {{CF_USER}}
+    password: {{CF_PASSWORD}}
+    organization: {{CF_ORG}}
+    space: {{CF_SPACE}}
+    skip_cert_check: true
+
+jobs:
+- name: test-develop
+  public: true
+  serial: true
+  plan:
+  - aggregate:
+    - { get: 5h-during-work-day, trigger: true }
+    - { get: zuulProxyTool, trigger: true,  resource: src-develop }
+  - task: test
+    file: zuulProxyTool/concourse/dev/tasks/test.yml
+
+- name: predeploy
+  public: true
+  serial: true
+  plan:
+  - aggregate:
+    - { get: zuulProxyTool, resource: src-develop, trigger: true, passed: ['test-develop'] }
+  - task: predeploy
+    file: zuulProxyTool/concourse/dev/tasks/predeploy.yml
+    params:
+      TERM: xterm
+      api: {{CF_API}}
+      username: {{CF_USER}}
+      password: {{CF_PASSWORD}}
+      organization: {{CF_ORG}}
+      space: {{CF_SPACE}}
+      serviceRegistryName: service-registry
+      configServerName: config-server
+      circuitBreakerName: p-circuit-breaker
+
+- name: assemble
+  public: true
+  plan:
+  - aggregate:
+    - { get: zuulProxyTool, resource: src-develop, trigger: true, passed: ['predeploy'] }
+  - task: assemble
+    file: zuulProxyTool/concourse/dev/tasks/assemble.yml
+    params:
+      TERM: xterm
+  - put: cf-deploy
+    attempts: 2
+    params:
+      manifest: target/manifest-dev.yml
