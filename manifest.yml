@@ -9,7 +9,7 @@ applications:
     services:
       - service-registry
       - config-server
-      - p-circuit-breaker
+      - circuit-breaker-dashboard
       - SSO
     env:
       SPRING_PROFILES_ACTIVE: cloud
