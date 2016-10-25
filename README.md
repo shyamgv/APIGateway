@@ -1,28 +1,28 @@
 # APIGateway Sample
 
 This application acts as an APIGateway that intercepts the incoming requests and passes the response back to the requested application. This sample application 
-demonstrates implementation of the following.
-    - ZuulFilter.
-    - ZuulProxy.
-    - Spring Boot Application.
-    - RestController.
-    - SSO.
-    - Config Server.
-	- Register with Service Registry.
+demonstrates implementation of the following:
+    * ZuulFilter
+    * ZuulProxy.
+    * Spring Boot Application.
+    * RestController.
+    * SSO.
+    * Config Server.
+	* Register with Service Registry.
 	
 # Building and Deploying
 
-1) Go to the project root.
-$ mvn clean package.
+1) Go to the project root
+$ mvn clean package
 
-2) (Local) Run the app using IDE or command line.
+2) (Local) Run the app using IDE or command line
 $mvn spring-boot:run
 
-3) (Cloud) On PCF - set the following environment variables.
-	- SPRING_PROFILES_ACTIVE.
-	- client_id.
-	- client_secret.
-	- CF_TARGET.
+3) (Cloud) On PCF - set the following environment variables
+	* SPRING_PROFILES_ACTIVE
+	* client_id
+	* client_secret
+	* CF_TARGET
 
 	For ease all these are set using the manifest.yml. If you want to set it manually then use the command like below from CF command line.
 
