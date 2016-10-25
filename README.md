@@ -1,5 +1,5 @@
 # APIGateway Sample
-==========================
+
 This application acts as an APIGateway that intercepts the incoming requests and passes the response back to the requested application. This sample application 
 demonstrates implementation of the following:
     - ZuulFilter
@@ -10,8 +10,8 @@ demonstrates implementation of the following:
     - Config Server
 	- Register with Service Registry
 	
-Building and Deploying
-===========================
+# Building and Deploying
+
 1) Go to the project root
 $ mvn clean package
 
@@ -45,8 +45,7 @@ $mvn spring-boot:run
 	For ease its included in the manifest.yml.
 	
 
-Trying It Out
-===========================
+# Trying It Out
 
 This being an APIGateway connects to microservices. In this case you can refer to the code and documentation of https://gitlab.apps.dev.gsdcf.manulife.com/microservices/greeting to implement a microservice that this Gateway is configured to call.
 
