@@ -2,23 +2,30 @@
 
 This application acts as an APIGateway that intercepts the incoming requests and passes the response back to the requested application. This sample application 
 demonstrates implementation of the following:
-    * ZuulFilter
-    * ZuulProxy.
-    * Spring Boot Application.
-    * RestController.
-    * SSO.
-    * Config Server.
-	* Register with Service Registry.
+
+    # ZuulFilter
+    # ZuulProxy
+    # Spring Boot Application
+    # RestController
+    # SSO
+    # Config Server
+	# Register with Service Registry
 	
 # Building and Deploying
 
 1) Go to the project root
-$ mvn clean package
 
-2) (Local) Run the app using IDE or command line
-$mvn spring-boot:run
+    $ mvn clean package
+
+2) (Local) Set the active profile as dev in local so that the application looks into application-dev.properties for configuration 
+    and then run the app using IDE or command line
+    
+    Go to (Run/debug Configurations -> Select ZuulProxyApplication -> Environment Variables)
+        SPRING_PROFILES_ACTIVE=dev
+    $mvn spring-boot:run
 
 3) (Cloud) On PCF - set the following environment variables
+
 	* SPRING_PROFILES_ACTIVE
 	* client_id
 	* client_secret
@@ -50,6 +57,7 @@ $mvn spring-boot:run
 This being an APIGateway connects to microservices. In this case you can refer to the code and documentation of https://gitlab.apps.dev.gsdcf.manulife.com/microservices/greeting to implement a microservice that this Gateway is configured to call.
 
 Hit the below end-point:
+
 https://zuulproxy.apps.dev.gsdcf.manulife.com/services/hello where zuulproxy is the host name given in manifest.yml and /services/hello is the end point in the greeting application.
  
 Note: Because of the SSO implementation it would automatically redirect and get the auth code and use that to fetch the token and establish a session. When hit for the first time after deployment 
