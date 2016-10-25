@@ -16,5 +16,3 @@ applications:
       client_secret: a72c7db9-1097-458f-80e4-45d609f80e67
       CF_TARGET: https://api.sys.dev.gsdcf.manulife.com
 
-      #client_id: 21e95fb2-7406-4c01-8eaf-23448a2e0e4b
-      #client_secret: 8e3264d5-6be1-4118-8d94-bcb06c60cc63
