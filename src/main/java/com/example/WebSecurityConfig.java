@@ -22,6 +22,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Created by gundave on 8/2/2016.
+ * @EnableWebSecurity enables to extend WebSecurityConfigurerAdapter is useful for web and rest clients.
+ * We can override the configure methods to authenticate and authorize access to different end points based on the roles and
+ * @EnableOAuth2Sso is a convinent annotation for @EnableOAuth2Client (Makes this application act as OAuth Client to fetch auth code from the Authorization Server, helps create
+ * OAuth2RestTemplate to call other ResourceServers)
+ * and @EnableConfigurationProperties (uses the Configuration Properties in application.properties to fetch the token)
+ * */
+
 @Configuration
 @EnableWebSecurity
 @EnableOAuth2Sso
@@ -38,9 +47,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.
                 authorizeRequests().
-                antMatchers("/eureka**").hasRole("USER").
+                antMatchers("/eureka**").hasRole("USER"). // end point starting with /eureka can be accessed by the user with role ROLE_USER
                 antMatchers("/admin**").hasRole("USER").
-                anyRequest()
+                anyRequest() // Any request should be authenticated
                 .authenticated().and().logout().logoutSuccessUrl("/").permitAll().and().csrf()
                 .csrfTokenRepository(csrfTokenRepository());
 

@@ -18,11 +18,23 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 
+/**
+ * Created by gundave on 8/2/2016.
+ * @EnableZuulProxy is a convinent annotation that makes this application act as an APIGateway,
+ * register the application to the service registry and also act as a circuit breaker.
+ * @SpringBootApplication is a convinent annotation that has ComponentScan (scans all the components
+ * under this directory structure), Configuration (can host number of beans), EnableAutoConfiguration
+ * (attempts to guess and configure beans that are likely needed - helps start embedded tomcat in this case ).
+ * @RestController enables to define RESTFul end-points
+ * */
+
 @EnableZuulProxy
 @SpringBootApplication
 @RestController
 public class ZuulProxyApplication {
 
+    // OAuth2RestOperations, provides resources like clientID, Client_secret, token and authorization URI.
+    // Also provides Client Context, required for populate RestTemplate to call another microservice acting ResourceServer.
     @Autowired
     private OAuth2RestOperations oAuth2RestOperations;
     @Autowired
