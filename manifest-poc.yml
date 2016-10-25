@@ -1,0 +1,10 @@
+---
+applications:
+- name: sample-Tool-poc
+  instances: 1
+  memory: 2G
+  path: target/st-1.0.0.war
+  env:
+    spring.profiles.active: dev
+  services:
+    - MY_db
