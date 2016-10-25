@@ -52,6 +52,6 @@ This being an APIGateway connects to microservices. In this case you can refer t
 Hit the below end-point:
 https://zuulproxy.apps.dev.gsdcf.manulife.com/services/hello where zuulproxy is the host name given in manifest.yml and /services/hello is the end point in the greeting application.
  
-# Because of the SSO implementation it would automatically redirect and get the auth code and use that to fetch the token and establish a session. When hit for the first time after deployment 
-  it will take you to Authorize screen for the permissions to be accepted. Once you authorize it would take you to the response screen.
+Note: Because of the SSO implementation it would automatically redirect and get the auth code and use that to fetch the token and establish a session. When hit for the first time after deployment 
+      it will take you to Authorize screen for the permissions to be accepted. Once you authorize it would take you to the response screen.
 
