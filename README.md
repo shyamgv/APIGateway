@@ -11,6 +11,8 @@ demonstrates implementation of the following:
     # Config Server
 	# Register with Service Registry
 	
+To spin up a Eureka Server instance in your local pls refer to https://spring.io/blog/2015/07/14/microservices-with-spring
+	
 # Building and Deploying
 
 1) Go to the project root
@@ -33,7 +35,7 @@ demonstrates implementation of the following:
 
 	For ease all these are set using the manifest.yml. If you want to set it manually then use the command like below from CF command line.
 
-		$ cf set-env ZuulProxy CF_TARGET https://api.sys.dev.gsdcf.manulife.com
+		$ cf set-env ZuulProxy CF_TARGET <your pcf login URL>
 		
 	Create Service:
 	===============
@@ -41,7 +43,7 @@ demonstrates implementation of the following:
 	
 		$ cf create-service p-service-registry standard service-registry
 		$ cf create-service p-config-server standard config-server
-		$ cf create-service p-identity manulife SSO
+		$ cf create-service p-identity XXX SSO
 	
 	Bind Services
 	=============
@@ -54,11 +56,11 @@ demonstrates implementation of the following:
 
 # Trying It Out
 
-This being an APIGateway connects to microservices. In this case you can refer to the code and documentation of https://gitlab.apps.dev.gsdcf.manulife.com/microservices/greeting to implement a microservice that this Gateway is configured to call.
+This being an APIGateway connects to microservices. In this case you can refer to the code and documentation of <gitlab url> to implement a microservice that this Gateway is configured to call.
 
 Hit the below end-point:
 
-https://zuulproxy.apps.dev.gsdcf.manulife.com/services/hello where zuulproxy is the host name given in manifest.yml and /services/hello is the end point in the greeting application.
+https://zuulproxy.apps.xxxx.xxxx.com/services/hello where zuulproxy is the host name given in manifest.yml and /services/hello is the end point in the greeting application.
  
 Note: Because of the SSO implementation it would automatically redirect and get the auth code and use that to fetch the token and establish a session. When hit for the first time after deployment 
       it will take you to Authorize screen for the permissions to be accepted. Once you authorize it would take you to the response screen.

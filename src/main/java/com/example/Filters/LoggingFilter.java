@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by gundave on 8/2/2016.
+ * Created by Shyam on 8/2/2016.
  * This class intercepts requests and responses based on the filter type (filterType) we use and
  * under what conditions this filter should be triggered (shouldFilter).
  * The order in which this filter should be executed (filterOrder)

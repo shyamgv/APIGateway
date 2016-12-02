@@ -13,8 +13,8 @@ applications:
       - SSO
     env:
       SPRING_PROFILES_ACTIVE: cloud
-      client_id: 21e95fb2-7406-4c01-8eaf-23448a2e0e4b
-      client_secret: 8e3264d5-6be1-4118-8d94-bcb06c60cc63
-      CF_TARGET: https://api.sys.dev.gsdcf.manulife.com
+      client_id: xxxx
+      client_secret: xxxx
+      CF_TARGET: https://api.sys.xxx.xxxx.xxx.com
 
       #test for routes
