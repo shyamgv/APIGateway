@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by Shyam on 8/2/2016.
+ * Created by gundave on 8/2/2016.
  * @EnableWebSecurity enables to extend WebSecurityConfigurerAdapter is useful for web and rest clients.
  * We can override the configure methods to authenticate and authorize access to different end points based on the roles and
  * @EnableOAuth2Sso is a convinent annotation for @EnableOAuth2Client (Makes this application act as OAuth Client to fetch auth code from the Authorization Server, helps create

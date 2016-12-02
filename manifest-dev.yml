@@ -1,20 +1,18 @@
 ---
 instances: 1
-memory: 512M
+memory: 1G
 applications:
-  - name: ZuulProxy
-    host: ZuulProxy
+  - name: zuul-proxy
+    host: zuul-proxy-dalton
     buildpack: java_buildpack_offline
     path: target/ZuulProxy-0.0.1-SNAPSHOT.jar
     services:
       - service-registry
-      - config-server
       - circuit-breaker-dashboard
       - SSO
     env:
       SPRING_PROFILES_ACTIVE: cloud
-      client_id: 21e95fb2-7406-4c01-8eaf-23448a2e0e4b
-      client_secret: 8e3264d5-6be1-4118-8d94-bcb06c60cc63
+      client_id: 3e35f0c2-d93d-4ba9-99a8-9000f74cf90e
+      client_secret: a72c7db9-1097-458f-80e4-45d609f80e67
       CF_TARGET: https://api.sys.dev.gsdcf.manulife.com
 
-      #test for routes

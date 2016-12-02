@@ -1,8 +1,5 @@
 .gradle
 target
-work
-concourse
-scripts
 *.DS_Store
 .gradle
 build

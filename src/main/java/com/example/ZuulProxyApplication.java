@@ -19,7 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 /**
- * Created by Shyam on 8/2/2016.
+ * Created by gundave on 8/2/2016.
  * @EnableZuulProxy is a convinent annotation that makes this application act as an APIGateway,
  * register the application to the service registry and also act as a circuit breaker.
  * @SpringBootApplication is a convinent annotation that has ComponentScan (scans all the components
